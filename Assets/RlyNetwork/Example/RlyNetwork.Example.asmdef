@@ -1,0 +1,17 @@
+{
+    "name": "RlyNetwork.Example",
+    "rootNamespace": "RlyNetwork.Example",
+    "references": [
+        "GUID:56a26ccd3063944aa986fec2e9046143",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
