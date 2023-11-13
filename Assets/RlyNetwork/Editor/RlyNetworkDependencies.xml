@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+    <androidPackages>
+        <androidPackage spec="org.jetbrains.kotlin:kotlin-stdlib:1.7.10" />
+        <androidPackage spec="androidx.security:security-crypto-ktx:1.1.0-alpha03" />
+        <androidPackage spec="com.github.komputing.kethereum:bip32:0.85.7" />
+        <androidPackage spec="com.github.komputing.kethereum:bip39:0.85.7" />
+        <androidPackage spec="com.github.komputing.kethereum:bip39_wordlist_en:0.85.7" />
+        <androidPackage spec="com.github.komputing.kethereum:crypto_impl_spongycastle:0.85.7" />
+        <androidPackage spec="com.github.komputing.kethereum:extensions_kotlin:0.85.7" />
+        <androidPackage spec="com.github.komputing.kethereum:model:0.85.7" />
+        <androidPackage spec="com.google.android.gms:play-services-auth-blockstore:16.2.0" />
+    </androidPackages>
+</dependencies>

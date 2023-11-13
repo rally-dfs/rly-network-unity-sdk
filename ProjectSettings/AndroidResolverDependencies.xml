@@ -1,0 +1,31 @@
+<dependencies>
+  <packages>
+    <package>androidx.security:security-crypto-ktx:1.1.0-alpha03</package>
+    <package>com.github.komputing.kethereum:bip32:0.85.7</package>
+    <package>com.github.komputing.kethereum:bip39:0.85.7</package>
+    <package>com.github.komputing.kethereum:bip39_wordlist_en:0.85.7</package>
+    <package>com.github.komputing.kethereum:crypto_impl_spongycastle:0.85.7</package>
+    <package>com.github.komputing.kethereum:extensions_kotlin:0.85.7</package>
+    <package>com.github.komputing.kethereum:model:0.85.7</package>
+    <package>com.google.android.gms:play-services-auth-blockstore:16.2.0</package>
+    <package>org.jetbrains.kotlin:kotlin-stdlib:1.7.10</package>
+  </packages>
+  <files />
+  <settings>
+    <setting name="androidAbis" value="armeabi-v7a" />
+    <setting name="bundleId" value="com.RlyNetwork.UnitySdk" />
+    <setting name="explodeAars" value="True" />
+    <setting name="gradleBuildEnabled" value="True" />
+    <setting name="gradlePropertiesTemplateEnabled" value="True" />
+    <setting name="gradleTemplateEnabled" value="True" />
+    <setting name="installAndroidPackages" value="True" />
+    <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />
+    <setting name="packageDir" value="Assets/Plugins/Android" />
+    <setting name="patchAndroidManifest" value="True" />
+    <setting name="patchMainTemplateGradle" value="True" />
+    <setting name="projectExportEnabled" value="False" />
+    <setting name="useFullCustomMavenRepoPathWhenExport" value="True" />
+    <setting name="useFullCustomMavenRepoPathWhenNotExport" value="False" />
+    <setting name="useJetifier" value="True" />
+  </settings>
+</dependencies>
