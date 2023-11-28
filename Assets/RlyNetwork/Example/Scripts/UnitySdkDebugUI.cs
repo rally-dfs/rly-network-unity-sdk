@@ -3,68 +3,71 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitySdkDebugUI : MonoBehaviour
+namespace RlyNetwork.Example
 {
-    public Button bundleIdButton;
-    public TMP_Text bundleIdText;
-
-    public TMP_InputField mnemonicInput;
-    public Button saveMnemonicButton;
-
-    public Button getMnemonicButton;
-    public TMP_Text mnemonicText;
-
-    public Button generateMnemonicButton;
-    public TMP_Text generatedMnemonicText;
-
-    public Button deleteMnemonicButton;
-
-    public TMP_InputField privateKeyInputField;
-    public Button getPrivateKeyButton;
-    public TMP_Text privateKeyText;
-
-    public void CopyTextToClipboard(TMP_Text text)
+    public class UnitySdkDebugUI : MonoBehaviour
     {
-        GUIUtility.systemCopyBuffer = text.text;
-    }
+        public Button bundleIdButton;
+        public TMP_Text bundleIdText;
 
-    void Start()
-    {
-        bundleIdButton.onClick.AddListener(GetBundleId);
-        saveMnemonicButton.onClick.AddListener(SaveMnemonic);
-        getMnemonicButton.onClick.AddListener(GetMnemonic);
-        generateMnemonicButton.onClick.AddListener(GenerateMnemonic);
-        deleteMnemonicButton.onClick.AddListener(DeleteMnemonic);
-        getPrivateKeyButton.onClick.AddListener(GetPrivateKey);
-    }
+        public TMP_InputField mnemonicInput;
+        public Button saveMnemonicButton;
 
-    async void GetBundleId()
-    {
-        bundleIdText.text = await UnitySdkPlugin.GetBundleId();
-    }
+        public Button getMnemonicButton;
+        public TMP_Text mnemonicText;
 
-    async void SaveMnemonic()
-    {
-        await UnitySdkPlugin.SaveMnemonic(mnemonicInput.text, false, false);
-    }
+        public Button generateMnemonicButton;
+        public TMP_Text generatedMnemonicText;
 
-    async void GetMnemonic()
-    {
-        mnemonicText.text = await UnitySdkPlugin.GetMnemonic();
-    }
+        public Button deleteMnemonicButton;
 
-    async void GenerateMnemonic()
-    {
-        generatedMnemonicText.text = await UnitySdkPlugin.GenerateNewMnemonic();
-    }
+        public TMP_InputField privateKeyInputField;
+        public Button getPrivateKeyButton;
+        public TMP_Text privateKeyText;
 
-    async void DeleteMnemonic()
-    {
-        await UnitySdkPlugin.DeleteMnemonic();
-    }
+        public void CopyTextToClipboard(TMP_Text text)
+        {
+            GUIUtility.systemCopyBuffer = text.text;
+        }
 
-    async void GetPrivateKey()
-    {
-        privateKeyText.text = await UnitySdkPlugin.GetPrivateKeyFromMnemonic(privateKeyInputField.text);
+        void Start()
+        {
+            bundleIdButton.onClick.AddListener(GetBundleId);
+            saveMnemonicButton.onClick.AddListener(SaveMnemonic);
+            getMnemonicButton.onClick.AddListener(GetMnemonic);
+            generateMnemonicButton.onClick.AddListener(GenerateMnemonic);
+            deleteMnemonicButton.onClick.AddListener(DeleteMnemonic);
+            getPrivateKeyButton.onClick.AddListener(GetPrivateKey);
+        }
+
+        async void GetBundleId()
+        {
+            bundleIdText.text = await UnitySdkPlugin.GetBundleId();
+        }
+
+        async void SaveMnemonic()
+        {
+            await UnitySdkPlugin.SaveMnemonic(mnemonicInput.text, false, false);
+        }
+
+        async void GetMnemonic()
+        {
+            mnemonicText.text = await UnitySdkPlugin.GetMnemonic();
+        }
+
+        async void GenerateMnemonic()
+        {
+            generatedMnemonicText.text = await UnitySdkPlugin.GenerateNewMnemonic();
+        }
+
+        async void DeleteMnemonic()
+        {
+            await UnitySdkPlugin.DeleteMnemonic();
+        }
+
+        async void GetPrivateKey()
+        {
+            privateKeyText.text = await UnitySdkPlugin.GetPrivateKeyFromMnemonic(privateKeyInputField.text);
+        }
     }
 }

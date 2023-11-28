@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec74de8939e6934691d5f307617442f, type: 3}
+  m_Name: WalletSDKConfig
+  m_EditorClassIdentifier: 
+  <Chains>k__BackingField:
+  - <Id>k__BackingField: 137
+    <Name>k__BackingField: Polygon
+    <URL>k__BackingField: "https://polygon.llamarpc.com\t"
+    <ExplorerURL>k__BackingField: https://polygonscan.com/
+    <WrappedETHAddress>k__BackingField: 0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270
+  - <Id>k__BackingField: 80001
+    <Name>k__BackingField: Mumbai
+    <URL>k__BackingField: "https://polygon-mumbai-bor.publicnode.com\t"
+    <ExplorerURL>k__BackingField: https://mumbai.polygonscan.com/
+    <WrappedETHAddress>k__BackingField: 0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889
