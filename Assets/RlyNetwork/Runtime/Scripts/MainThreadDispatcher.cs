@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Concurrent;
 using System.Threading;
@@ -7,7 +9,7 @@ using UnityEngine;
 
 public class MainThreadDispatcher : MonoBehaviour
 {
-    static MainThreadDispatcher instance;
+    static MainThreadDispatcher? instance;
 
     static readonly ConcurrentQueue<Action> queue = new();
 

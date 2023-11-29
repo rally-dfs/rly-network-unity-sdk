@@ -1,20 +1,21 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+
 using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+
 using Nethereum.Contracts.Standards.ENS;
 using Nethereum.Contracts.Standards.ERC20;
 using Nethereum.Contracts.Standards.ERC20.ContractDefinition;
 using Nethereum.JsonRpc.Client;
-using Nethereum.Signer;
 using Nethereum.Unity.Rpc;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
+
 using TMPro;
 
 using UnityEngine;
@@ -271,16 +272,30 @@ namespace RlyNetwork.Example
             }
         }
 
-        async void TransferToken(string tokenAddress, string recipientAddress, decimal amountInToken, bool asMetaTransaction = false)
+        async Task TransferToken(string tokenAddress, string recipientAddress, decimal amountInToken)
         {
             var amount = Web3.Convert.ToWei(amountInToken, (int)await GetTokenDecimals(tokenAddress));
 
-            if (asMetaTransaction)
+            if (walletSDKConfig.SendTokensAsMetaTransactions)
             {
-                var config = walletSDKConfig.GetChainConfig((int)account.ChainId);
-
-                // var tx = await TransactionHelpers.GetExecuteMetatransactionTx(account, recipientAddress, amount, config, tokenAddress, web3);
-                // TransactionHelpers.RelayTransaction(account, config.GSN, tx);
+                _ = ((int)account.ChainId switch
+                {
+                    (int)SupportedChain.Polygon => NetworkProvider.RlyPolygon.WithAccount(account).WithApiKey(walletSDKConfig.ApiKey).TransferExact(recipientAddress, amount, MetaTxMethod.ExecuteMetaTransaction, tokenAddress),
+                    (int)SupportedChain.Mumbai => NetworkProvider.RlyMumbai.WithAccount(account).WithApiKey(walletSDKConfig.ApiKey).TransferExact(recipientAddress, amount, MetaTxMethod.ExecuteMetaTransaction, tokenAddress),
+                    _ => throw new NotImplementedException(),
+                }).ContinueWithOnMainThread(t =>
+                {
+                    if (!t.IsCanceled && !t.IsFaulted)
+                    {
+                        PopupManager.Instance.ShowPopup(PopupType.Information, "Send Token", $"Transaction sent. Tx Hash: {t.Result}", null);
+                    }
+                    else
+                    {
+                        Debug.LogException(t.Exception);
+                        PopupManager.Instance.ShowPopup(PopupType.Information, "Send Token", $"Transaction failed. Reason: {t.Exception.Message}", null);
+                    }
+                });
+                return;
             }
 
             var token = new ERC20Service(web3.Eth).GetContractService(tokenAddress);
@@ -289,11 +304,12 @@ namespace RlyNetwork.Example
             {
                 if (!t.IsCanceled && !t.IsFaulted)
                 {
-                    PopupManager.Instance.ShowPopup(PopupType.Information, "Send ETH", $"Transaction sent. Tx Hash: {t.Result}", null);
+                    PopupManager.Instance.ShowPopup(PopupType.Information, "Send Token", $"Transaction sent. Tx Hash: {t.Result}", null);
                 }
                 else
                 {
-                    PopupManager.Instance.ShowPopup(PopupType.Information, "Send ETH", $"Transaction failed. Reason: {t.Exception.Message}", null);
+                    Debug.LogException(t.Exception);
+                    PopupManager.Instance.ShowPopup(PopupType.Information, "Send Token", $"Transaction failed. Reason: {t.Exception.Message}", null);
                 }
             });
         }

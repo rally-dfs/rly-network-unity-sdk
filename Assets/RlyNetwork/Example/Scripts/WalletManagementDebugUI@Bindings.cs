@@ -1,5 +1,7 @@
+using System.Threading.Tasks;
+
 using Nethereum.Contracts.Standards.ENS;
-using RlyNetwork.Example;
+
 using UnityEngine;
 
 namespace RlyNetwork.Example
@@ -16,7 +18,7 @@ namespace RlyNetwork.Example
 
         public void OnSendTokensButtonClicked()
         {
-            PopupManager.Instance.ShowPopup(PopupType.SendToken, "Send ETH/Tokens", "Select the token", async (data) =>
+            PopupManager.Instance.ShowPopup(PopupType.SendToken, "Send ETH/Tokens", "Select the token", (data) =>
             {
                 if (string.IsNullOrEmpty(data))
                     return;
@@ -32,14 +34,14 @@ namespace RlyNetwork.Example
                 var element = tokenAssetsUI.GetElement(tokenAddress);
                 var isETH = element.TokenAddress == ENSService.ENS_ZERO_ADDRESS;
 
-                PopupManager.Instance.ShowPopup(PopupType.TwoOptions, isETH ? "Send ETH" : "Send Tokens", $"Are you sure you want to send {amount} {element.AssetName} to {targetAddress}?", async (id) =>
+                PopupManager.Instance.ShowPopup(PopupType.TwoOptions, isETH ? "Send ETH" : "Send Tokens", $"Are you sure you want to send {amount} {element.AssetName} to {targetAddress}?", (id) =>
                 {
                     if (id == "Acknowledge")
                     {
                         if (isETH)
                             StartCoroutine(TransferEther(targetAddress, decimal.Parse(amount)));
                         else
-                            TransferToken(element.TokenAddress, targetAddress, decimal.Parse(amount));
+                            _ = TransferToken(element.TokenAddress, targetAddress, decimal.Parse(amount));
                     }
                 });
             });
@@ -47,23 +49,25 @@ namespace RlyNetwork.Example
 
         public void OnAddNewTokenButtonClicked()
         {
-            PopupManager.Instance.ShowPopup(PopupType.AddToken, "Add Token", "Enter the token address", async (tokenAddress) =>
+            PopupManager.Instance.ShowPopup(PopupType.AddToken, "Add Token", "Enter the token address", (tokenAddress) => _ = AddNewToken(tokenAddress));
+        }
+
+        async Task AddNewToken(string tokenAddress)
+        {
+            if (string.IsNullOrEmpty(tokenAddress))
+                return;
+
+            var tokenSymbol = await FetchTokenSymbol(tokenAddress);
+            var tokenName = await FetchTokenName(tokenAddress);
+            var tokenBalance = await GetTokenBalance(tokenAddress, GetAccountAddress());
+
+            if (string.IsNullOrEmpty(tokenSymbol) || string.IsNullOrEmpty(tokenName))
             {
-                if (string.IsNullOrEmpty(tokenAddress))
-                    return;
+                PopupManager.Instance.ShowPopup(PopupType.Information, "Add Token", $"No token with the address {tokenAddress} has been found", null);
+                return;
+            }
 
-                var tokenSymbol = await FetchTokenSymbol(tokenAddress);
-                var tokenName = await FetchTokenName(tokenAddress);
-                var tokenBalance = await GetTokenBalance(tokenAddress, GetAccountAddress());
-
-                if (string.IsNullOrEmpty(tokenSymbol) || string.IsNullOrEmpty(tokenName))
-                {
-                    PopupManager.Instance.ShowPopup(PopupType.Information, "Add Token", $"No token with the address {tokenAddress} has been found", null);
-                    return;
-                }
-
-                tokenAssetsUI.AddTokenData(new TokenFetchData(tokenSymbol, tokenName, tokenAddress, tokenBalance));
-            });
+            tokenAssetsUI.AddTokenData(new TokenFetchData(tokenSymbol, tokenName, tokenAddress, tokenBalance));
         }
 
         public void OnAddNewNFTButtonClicked()

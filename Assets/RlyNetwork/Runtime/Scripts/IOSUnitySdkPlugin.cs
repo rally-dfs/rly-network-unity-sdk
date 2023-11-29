@@ -1,4 +1,9 @@
+#nullable enable
+
+#if UNITY_IOS && !UNITY_EDITOR
 using System.Runtime.InteropServices;
+#endif
+
 using System.Threading.Tasks;
 
 public class IOSUnitySdkPlugin : IUnitySdkPlatform
