@@ -11,6 +11,7 @@ using Nethereum.Contracts;
 using Nethereum.Contracts.Standards.ERC20;
 using Nethereum.Contracts.Standards.ERC20.ContractDefinition;
 using Nethereum.Hex.HexConvertors.Extensions;
+using Nethereum.Hex.HexTypes;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Signer;
 using Nethereum.Signer.EIP712;
@@ -139,7 +140,8 @@ public class MetaTransaction
             SigV = v[0],
         };
 
-        var estimatedGas = await provider.Eth.GetContractTransactionHandler<ExecuteMetaTransactionFunction>().EstimateGasAsync(contractAddress, tx);
+        // var estimatedGas = await provider.Eth.GetContractTransactionHandler<ExecuteMetaTransactionFunction>().EstimateGasAsync(contractAddress, tx);
+        var estimatedGas = new HexBigInteger(100000);
 
         var info = await provider.Eth.Blocks.GetBlockWithTransactionsByNumber.SendRequestAsync(BlockParameter.CreateLatest());
 

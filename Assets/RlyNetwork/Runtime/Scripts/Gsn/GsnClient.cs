@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,12 @@ public static class GsnClient
     public static async Task UpdateConfig(NetworkConfig config, GsnTransactionDetails transaction)
     {
         using var httpClient = new HttpClient();
-        httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
         httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {config.RelayerApiKey ?? ""}");
 
         var response = await httpClient.GetAsync($"{config.Gsn.RelayUrl}/getaddr");
+        response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
         var content = await response.Content.ReadAsStringAsync();
         var serverConfigUpdate = GsnServerConfigPayload.FromJson(content);
 
@@ -65,7 +68,7 @@ public static class GsnClient
             { "signature", signature },
             { "approvalData", approvalData },
             { "relayMaxNonce", relayMaxNonce },
-            { "relayLastKnownNonce", relayLastKnownNonce },
+            { "relayLastKnownNonce", relayLastKnownNonce.Value },
             { "domainSeparatorName", config.Gsn.DomainSeparatorName },
             { "relayRequestId", string.Empty }
         };
@@ -92,7 +95,6 @@ public static class GsnClient
         ((Dictionary<string, object>)httpRequest["metadata"])["relayRequestId"] = relayRequestId;
 
         using var httpClient = new HttpClient();
-        httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
         httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {config.RelayerApiKey ?? ""}");
 
         var jsonContent = JsonConvert.SerializeObject(httpRequest);

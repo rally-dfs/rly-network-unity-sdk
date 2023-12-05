@@ -65,23 +65,23 @@ public static class GnsTxHelper
         var function = new IRelayHubABI.RelayCallFunction
         {
             DomainSeparatorName = config.DomainSeparatorName,
-            MaxAcceptanceBudget = BigInteger.Parse(maxAcceptanceBudget, System.Globalization.NumberStyles.HexNumber),
+            MaxAcceptanceBudget = maxAcceptanceBudget.HexToBigInteger(false),
             RelayRequest = new IRelayHubABI.RelayRequest
             {
                 Request = new IRelayHubABI.ForwardRequest
                 {
                     From = relayRequest.Request.From,
                     To = relayRequest.Request.To,
-                    Value = BigInteger.Parse(relayRequest.Request.Value, System.Globalization.NumberStyles.HexNumber),
-                    Gas = BigInteger.Parse(relayRequest.Request.Gas, System.Globalization.NumberStyles.HexNumber),
-                    Nonce = BigInteger.Parse(relayRequest.Request.Nonce, System.Globalization.NumberStyles.HexNumber),
+                    Value = BigInteger.Parse(relayRequest.Request.Value),
+                    Gas = BigInteger.Parse(relayRequest.Request.Gas.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber),
+                    Nonce = BigInteger.Parse(relayRequest.Request.Nonce),
                     Data = relayRequest.Request.Data.HexToByteArray(),
-                    ValidUntilTime = BigInteger.Parse(relayRequest.Request.ValidUntilTime, System.Globalization.NumberStyles.HexNumber)
+                    ValidUntilTime = BigInteger.Parse(relayRequest.Request.ValidUntilTime)
                 },
                 RelayData = new IRelayHubABI.RelayData
                 {
-                    MaxFeePerGas = BigInteger.Parse(relayRequest.RelayData.MaxFeePerGas, System.Globalization.NumberStyles.HexNumber),
-                    MaxPriorityFeePerGas = BigInteger.Parse(relayRequest.RelayData.MaxPriorityFeePerGas, System.Globalization.NumberStyles.HexNumber),
+                    MaxFeePerGas = BigInteger.Parse(relayRequest.RelayData.MaxFeePerGas),
+                    MaxPriorityFeePerGas = BigInteger.Parse(relayRequest.RelayData.MaxPriorityFeePerGas),
                     RelayWorker = relayRequest.RelayData.RelayWorker,
                     Paymaster = relayRequest.RelayData.Paymaster,
                     Forwarder = relayRequest.RelayData.Forwarder,
@@ -159,7 +159,7 @@ public static class GnsTxHelper
             new() { TypeName = "uint256", Value = relayRequest.Request.Nonce },
             new() { TypeName = "bytes", Value = relayRequest.Request.Data },
             new() { TypeName = "uint256", Value = relayRequest.Request.ValidUntilTime },
-            new() { TypeName = "RelayData", Value = relayRequest.RelayData.ToMap() }
+            new() { TypeName = "RelayData", Value = relayRequest.RelayData.ToEip712Values() }
         };
 
         var data = new TypedData<Domain>

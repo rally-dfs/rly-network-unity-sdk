@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 using System.Numerics;
-
+using Nethereum.ABI.EIP712;
 using Nethereum.Hex.HexConvertors.Extensions;
 
 public class RelayData
@@ -55,6 +55,21 @@ public class RelayData
             { "forwarder", Forwarder },
             { "paymasterData", PaymasterData },
             { "clientId", ClientId }
+        };
+    }
+
+    public MemberValue[] ToEip712Values()
+    {
+        return new MemberValue[]
+        {
+            new() { TypeName = "uint256", Value = BigInteger.Parse(MaxFeePerGas) },
+            new() { TypeName = "uint256", Value = BigInteger.Parse(MaxPriorityFeePerGas) },
+            new() { TypeName = "uint256", Value = BigInteger.Parse(TransactionCalldataGasUsed) },
+            new() { TypeName = "address", Value = RelayWorker },
+            new() { TypeName = "address", Value = Paymaster },
+            new() { TypeName = "address", Value = Forwarder },
+            new() { TypeName = "bytes", Value = PaymasterData.HexToByteArray() },
+            new() { TypeName = "uint256", Value = BigInteger.Parse(ClientId) }
         };
     }
 }
