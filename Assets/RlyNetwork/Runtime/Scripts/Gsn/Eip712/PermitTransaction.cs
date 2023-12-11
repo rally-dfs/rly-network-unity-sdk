@@ -19,16 +19,16 @@ using Nethereum.Web3.Accounts;
 
 public class Permit
 {
-    public string Name { get; set; }
-    public string Version { get; set; }
-    public int ChainId { get; set; }
-    public string VerifyingContract { get; set; }
-    public string Owner { get; set; }
-    public string Spender { get; set; }
-    public BigInteger Value { get; set; }
-    public BigInteger Nonce { get; set; }
-    public BigInteger Deadline { get; set; }
-    public string Salt { get; set; }
+    public string Name { get; }
+    public string Version { get; }
+    public int ChainId { get; }
+    public string VerifyingContract { get; }
+    public string Owner { get; }
+    public string Spender { get; }
+    public BigInteger Value { get; }
+    public BigInteger Nonce { get; }
+    public BigInteger Deadline { get; }
+    public string Salt { get; }
 
     public Permit(string name, string version, int chainId, string verifyingContract, string owner, string spender, BigInteger value, BigInteger nonce, BigInteger deadline, string salt)
     {
@@ -36,21 +36,30 @@ public class Permit
         Version = version;
         ChainId = chainId;
         VerifyingContract = verifyingContract;
-        Owner = owner;
-        Spender = spender;
+        Owner = owner.ToLowerInvariant();
+        Spender = spender.ToLowerInvariant();
         Value = value;
         Nonce = nonce;
         Deadline = deadline;
         Salt = salt;
     }
 
-    public static TypedData<DomainWithSalt> GetTypedPermitTransaction(Permit permit)
+    public static string GetSignedTypedPermitTransaction(Account wallet, Permit permit)
     {
+        var hasSalt = !string.IsNullOrEmpty(permit.Salt) && permit.Salt != "0x0000000000000000000000000000000000000000000000000000000000000000";
+
         var types = new Dictionary<string, MemberDescription[]>
         {
             {
                 "EIP712Domain",
-                new MemberDescription[]
+                hasSalt ? new MemberDescription[]
+                {
+                    new() { Name = "name", Type = "string" },
+                    new() { Name = "version", Type = "string" },
+                    new() { Name = "chainId", Type = "uint256" },
+                    new() { Name = "verifyingContract", Type = "address" },
+                    new() { Name = "salt", Type = "bytes32" }
+                } : new MemberDescription[]
                 {
                     new() { Name = "name", Type = "string" },
                     new() { Name = "version", Type = "string" },
@@ -73,23 +82,6 @@ public class Permit
 
         const string primaryType = "Permit";
 
-        var domainSeparator = new DomainWithSalt
-        {
-            Name = permit.Name,
-            Version = permit.Version,
-            ChainId = new BigInteger(permit.ChainId),
-            VerifyingContract = permit.VerifyingContract
-        };
-
-        if (!string.IsNullOrEmpty(permit.Salt) && permit.Salt != "0x0000000000000000000000000000000000000000000000000000000000000000")
-        {
-            domainSeparator.Salt = permit.Salt.HexToByteArray();
-            types["EIP712Domain"] = new List<MemberDescription>(types["EIP712Domain"])
-            {
-                new() { Name = "salt", Type = "bytes32" }
-            }.ToArray();
-        }
-
         var messageData = new MemberValue[]
         {
             new() { TypeName = "address", Value = permit.Owner },
@@ -99,22 +91,51 @@ public class Permit
             new() { TypeName = "uint256", Value = permit.Deadline }
         };
 
-        return new TypedData<DomainWithSalt>
+        if (hasSalt)
         {
-            Types = types,
-            PrimaryType = primaryType,
-            Domain = domainSeparator,
-            Message = messageData
-        };
+            var domainSeparator = new DomainWithSalt
+            {
+                Name = permit.Name,
+                Version = permit.Version,
+                ChainId = permit.ChainId,
+                VerifyingContract = permit.VerifyingContract,
+                Salt = permit.Salt.HexToByteArray()
+            };
+            var typedData = new TypedData<DomainWithSalt>
+            {
+                Types = types,
+                PrimaryType = primaryType,
+                Domain = domainSeparator,
+                Message = messageData
+            };
+            return wallet.SignTypedData(typedData);
+        }
+        else
+        {
+            var domainSeparator = new Domain
+            {
+                Name = permit.Name,
+                Version = permit.Version,
+                ChainId = permit.ChainId,
+                VerifyingContract = permit.VerifyingContract
+            };
+            var typedData = new TypedData<Domain>
+            {
+                Types = types,
+                PrimaryType = primaryType,
+                Domain = domainSeparator,
+                Message = messageData
+            };
+            typedData.EnsureDomainRawValuesAreInitialised();
+            return wallet.SignTypedData(typedData);
+        }
     }
 
     public static Dictionary<string, byte[]> GetPermitEIP712Signature(Account wallet, string contractName, string contractAddress, NetworkConfig config, int nonce, BigInteger amount, BigInteger deadline, string salt)
     {
         var chainId = int.Parse(config.Gsn.ChainId);
 
-        var eip712Data = GetTypedPermitTransaction(new Permit(contractName, "1", chainId, contractAddress, wallet.Address, config.Gsn.PaymasterAddress, amount, nonce, deadline, salt));
-
-        var signature = Eip712TypedDataSigner.Current.SignTypedData(eip712Data, new EthECKey(wallet.PrivateKey));
+        var signature = GetSignedTypedPermitTransaction(wallet, new Permit(contractName, "1", chainId, contractAddress, wallet.Address, config.Gsn.PaymasterAddress, amount, nonce, deadline, salt));
 
         var cleanedSignature = signature.StartsWith("0x") ? signature.Substring(2) : signature;
         var signatureBytes = cleanedSignature.HexToByteArray();
@@ -148,7 +169,7 @@ public class Permit
         {
             From = wallet.Address,
             To = destinationAddress,
-            AmountToSend = amount
+            Value = amount
         }.GetCallData();
 
         var tx = new PermitFunction
@@ -177,7 +198,20 @@ public class Permit
     public static async Task<BigInteger> GetPermitDeadline(Web3 provider)
     {
         var block = await provider.Eth.Blocks.GetBlockWithTransactionsByNumber.SendRequestAsync(BlockParameter.CreateLatest());
-        return block.Timestamp.Value + TimeSpan.FromSeconds(45).Ticks;
+        return (block.Timestamp.Value + 45) * 1000;
+    }
+
+    [Function("transferFrom", "bool")]
+    public class TransferFromFunction : FunctionMessage
+    {
+        [Parameter("address", "from", 1)]
+        public virtual string From { get; set; } = string.Empty;
+
+        [Parameter("address", "to", 2)]
+        public virtual string To { get; set; } = string.Empty;
+
+        [Parameter("uint256", "value", 3)]
+        public virtual BigInteger Value { get; set; }
     }
 
     [Function("permit", "bool")]

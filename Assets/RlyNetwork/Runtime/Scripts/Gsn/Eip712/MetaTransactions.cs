@@ -11,10 +11,7 @@ using Nethereum.Contracts;
 using Nethereum.Contracts.Standards.ERC20;
 using Nethereum.Contracts.Standards.ERC20.ContractDefinition;
 using Nethereum.Hex.HexConvertors.Extensions;
-using Nethereum.Hex.HexTypes;
 using Nethereum.RPC.Eth.DTOs;
-using Nethereum.Signer;
-using Nethereum.Signer.EIP712;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
 
@@ -35,7 +32,7 @@ public class MetaTransaction
         Salt = salt;
         VerifyingContract = verifyingContract;
         Nonce = nonce;
-        From = from;
+        From = from.ToLowerInvariant();
         FunctionSignature = functionSignature;
     }
 
@@ -77,7 +74,7 @@ public class MetaTransaction
         var messageData = new MemberValue[] {
             new() { TypeName = "uint256", Value = metaTransaction.Nonce },
             new() { TypeName = "address", Value = metaTransaction.From },
-            new() { TypeName = "bytes", Value = metaTransaction.FunctionSignature },
+            new() { TypeName = "bytes", Value = metaTransaction.FunctionSignature.ToHex(true) },
         };
 
         return new TypedData<DomainWithoutChainIdButSalt>
@@ -97,7 +94,7 @@ public class MetaTransaction
 
         var eip712Data = GetTypedMetatransaction(new MetaTransaction(contractName, "1", paddedSaltHexString, contractAddress, nonce, wallet.Address, functionSignature));
 
-        var signature = Eip712TypedDataSigner.Current.SignTypedData(eip712Data, new EthECKey(wallet.PrivateKey));
+        var signature = wallet.SignTypedData(eip712Data);
 
         var cleanedSignature = signature.StartsWith("0x") ? signature.Substring(2) : signature;
         var signatureBytes = cleanedSignature.HexToByteArray();
@@ -140,15 +137,14 @@ public class MetaTransaction
             SigV = v[0],
         };
 
-        // var estimatedGas = await provider.Eth.GetContractTransactionHandler<ExecuteMetaTransactionFunction>().EstimateGasAsync(contractAddress, tx);
-        var estimatedGas = new HexBigInteger(100000);
+        var estimatedGas = await provider.Eth.GetContractTransactionHandler<ExecuteMetaTransactionFunction>().EstimateGasAsync(contractAddress, tx);
 
         var info = await provider.Eth.Blocks.GetBlockWithTransactionsByNumber.SendRequestAsync(BlockParameter.CreateLatest());
 
         var maxPriorityFeePerGas = BigInteger.Parse("1500000000");
         var maxFeePerGas = info.BaseFeePerGas.Value * 2 + maxPriorityFeePerGas;
 
-        return new GsnTransactionDetails(wallet.Address, tx.GetCallData().ToHex(true), contractAddress, maxFeePerGas.ToString(), maxPriorityFeePerGas.ToString(), "0", $"0x{estimatedGas.Value:X2}", "0x", "0x", false);
+        return new GsnTransactionDetails(wallet.Address, tx.GetCallData().ToHex(true), contractAddress, maxFeePerGas.ToString(), maxPriorityFeePerGas.ToString(), "0", $"0x{estimatedGas.Value:X2}");
     }
 
     [Function("executeMetaTransaction", "bytes")]

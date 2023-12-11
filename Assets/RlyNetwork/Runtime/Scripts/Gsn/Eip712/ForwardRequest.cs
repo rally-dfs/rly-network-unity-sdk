@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -7,20 +8,20 @@ using Nethereum.Hex.HexConvertors.Extensions;
 
 public class ForwardRequest
 {
-    public string From { get; set; }
-    public string To { get; set; }
-    public string Value { get; set; }
-    public string Gas { get; set; }
-    public string Nonce { get; set; }
-    public string Data { get; set; }
-    public string ValidUntilTime { get; set; }
+    public string From { get; }
+    public string To { get; }
+    public string Value { get; }
+    public string Gas { get; }
+    public string Nonce { get; }
+    public string Data { get; }
+    public string ValidUntilTime { get; }
 
     public ForwardRequest(string from, string to, string value, string gas, string nonce, string data, string validUntilTime)
     {
-        From = from;
-        To = to;
+        From = from.ToLowerInvariant();
+        To = to.ToLowerInvariant();
         Value = value;
-        Gas = gas;
+        Gas = Convert.ToInt32(gas, 16).ToString();
         Nonce = nonce;
         Data = data;
         ValidUntilTime = validUntilTime;

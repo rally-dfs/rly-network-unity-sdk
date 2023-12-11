@@ -20,9 +20,9 @@ public static class AccountExtension
         switch (typedDataVersion)
         {
             case TypedDataVersion.V3:
-                return Eip712TypedDataSigner.Current.SignTypedData(eip712Data, new EthECKey(account.PrivateKey));
+                return CustomEip712TypedDataSigner.Current.SignTypedData(eip712Data, new EthECKey(account.PrivateKey));
             case TypedDataVersion.V4:
-                return Eip712TypedDataSigner.Current.SignTypedDataV4(eip712Data, new EthECKey(account.PrivateKey));
+                return CustomEip712TypedDataSigner.Current.SignTypedDataV4(eip712Data, new EthECKey(account.PrivateKey));
             default:
                 throw new ArgumentOutOfRangeException(nameof(typedDataVersion), typedDataVersion, null);
         }

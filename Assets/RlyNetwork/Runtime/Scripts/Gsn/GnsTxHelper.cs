@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Numerics;
+using System.Text;
 using System.Threading.Tasks;
 
 using Nethereum.ABI;
@@ -23,7 +24,7 @@ public static class GnsTxHelper
 {
     public static CalldataBytes CalculateCalldataBytesZeroNonzero(string calldata)
     {
-        var calldataBuf = calldata.Replace("0x", "").HexToByteArray();
+        var calldataBuf = Encoding.UTF8.GetBytes(calldata.Replace("0x", ""));
 
         int calldataZeroBytes = calldataBuf.Count(ch => ch == 0);
         int calldataNonzeroBytes = calldataBuf.Length - calldataZeroBytes;
@@ -95,13 +96,13 @@ public static class GnsTxHelper
 
         var txData = function.GetCallData();
 
-        return BigInteger.Parse(CalculateCalldataCost(txData.ToHex(true), config.GtxDataNonZero, config.GtxDataZero).ToString(), System.Globalization.NumberStyles.HexNumber).ToString("X2");
+        return CalculateCalldataCost(txData.ToHex(true), config.GtxDataNonZero, config.GtxDataZero).ToString("X").ToLowerInvariant();
     }
 
     public static async Task<string> GetSenderNonce(string sender, string forwarderAddress, Web3 client)
     {
         var function = client.Eth.GetContractQueryHandler<IForwarderABI.GetNonceFunction>();
-        var result = await function.QueryAsync<BigInteger>(sender);
+        var result = await function.QueryAsync<BigInteger>(forwarderAddress, new IForwarderABI.GetNonceFunction { From = sender });
 
         return result.ToString();
     }
@@ -143,17 +144,17 @@ public static class GnsTxHelper
 
         const string primaryType = "RelayRequest";
 
-        var domainSeperator = new Domain
+        var domainSeperator = new DomainWithChainIdString
         {
             Name = domainSeparatorName,
             Version = "3",
-            ChainId = BigInteger.Parse(chainId),
+            ChainId = chainId,
             VerifyingContract = config.Gsn.ForwarderAddress
         };
 
         var messageData = new MemberValue[] {
-            new() { TypeName = "address", Value = relayRequest.Request.From },
-            new() { TypeName = "address", Value = relayRequest.Request.To },
+            new() { TypeName = "address", Value = relayRequest.Request.From.ToLowerInvariant() },
+            new() { TypeName = "address", Value = relayRequest.Request.To.ToLowerInvariant() },
             new() { TypeName = "uint256", Value = relayRequest.Request.Value },
             new() { TypeName = "uint256", Value = relayRequest.Request.Gas },
             new() { TypeName = "uint256", Value = relayRequest.Request.Nonce },
@@ -162,7 +163,7 @@ public static class GnsTxHelper
             new() { TypeName = "RelayData", Value = relayRequest.RelayData.ToEip712Values() }
         };
 
-        var data = new TypedData<Domain>
+        var data = new TypedData<DomainWithChainIdString>
         {
             Types = types,
             PrimaryType = primaryType,
@@ -180,13 +181,14 @@ public static class GnsTxHelper
         {
             new("address", ((Dictionary<string, object>)relayRequest["request"])["from"]),
             new("uint256", ((Dictionary<string, object>)relayRequest["request"])["nonce"]),
-            new("bytes", ((Dictionary<string, object>)relayRequest["relayData"])["paymasterData"]),
+            new("bytes", signature.HexToByteArray()),
         };
 
-        var hash = Sha3Keccack.Current.CalculateHash(new ABIEncode().GetSha3ABIParamsEncoded(parameters)).ToHex();
-        var rawRelayRequestId = hash.PadLeft(64, '0');
+        var hash = Sha3Keccack.Current.CalculateHash(new ABIEncode().GetABIEncoded(parameters));
+
+        var rawRelayRequestId = hash.ToHex().PadLeft(64, '0');
         const int prefixSize = 8;
-        var prefixedRelayRequestId = rawRelayRequestId[..prefixSize] + new string('0', prefixSize);
+        var prefixedRelayRequestId = new string('0', prefixSize) + rawRelayRequestId[prefixSize..];
 
         return $"0x{prefixedRelayRequestId}";
     }
@@ -233,7 +235,7 @@ public static class GnsTxHelper
             throw new Exception($"RelayError: {responseMap["error"]}");
         }
 
-        var txHash = $"0x{Sha3Keccack.Current.CalculateHash(responseMap["signedTx"].ToString())}";
+        var txHash = $"0x{Sha3Keccack.Current.CalculateHashFromHex(responseMap["signedTx"].ToString())}";
         TransactionReceipt receipt;
         do
         {

@@ -272,16 +272,20 @@ namespace RlyNetwork.Example
             }
         }
 
-        async Task TransferToken(string tokenAddress, string recipientAddress, decimal amountInToken)
+        async Task TransferToken(string tokenAddress, string recipientAddress, decimal amountInToken, MetaTxMethod? metaTxMethod = null)
         {
             var amount = Web3.Convert.ToWei(amountInToken, (int)await GetTokenDecimals(tokenAddress));
+            await TransferTokenExact(tokenAddress, recipientAddress, amount, metaTxMethod);
+        }
 
-            if (walletSDKConfig.SendTokensAsMetaTransactions)
+        async Task TransferTokenExact(string tokenAddress, string recipientAddress, BigInteger amount, MetaTxMethod? metaTxMethod = null)
+        {
+            if (metaTxMethod.HasValue)
             {
                 _ = ((int)account.ChainId switch
                 {
-                    (int)SupportedChain.Polygon => NetworkProvider.RlyPolygon.WithAccount(account).WithApiKey(walletSDKConfig.ApiKey).TransferExact(recipientAddress, amount, MetaTxMethod.ExecuteMetaTransaction, tokenAddress),
-                    (int)SupportedChain.Mumbai => NetworkProvider.RlyMumbai.WithAccount(account).WithApiKey(walletSDKConfig.ApiKey).TransferExact(recipientAddress, amount, MetaTxMethod.ExecuteMetaTransaction, tokenAddress),
+                    (int)SupportedChain.Polygon => NetworkProvider.RlyPolygon.WithAccount(account).WithApiKey(walletSDKConfig.ApiKey).TransferExact(recipientAddress, amount, metaTxMethod.Value, tokenAddress),
+                    (int)SupportedChain.Mumbai => NetworkProvider.RlyMumbai.WithAccount(account).WithApiKey(walletSDKConfig.ApiKey).TransferExact(recipientAddress, amount, metaTxMethod.Value, tokenAddress),
                     _ => throw new NotImplementedException(),
                 }).ContinueWithOnMainThread(t =>
                 {

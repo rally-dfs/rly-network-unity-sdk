@@ -18,11 +18,13 @@ public enum MetaTxMethod
 
 public class GsnTransactionDetails
 {
+    string? gas;
+
     public string From { get; }
     public string Data { get; }
     public string To { get; }
     public string? Value { get; }
-    public string? Gas { get; set; }
+    public string? Gas { get => gas; set => gas = value?.ToLowerInvariant(); }
     public string MaxFeePerGas { get; set; }
     public string MaxPriorityFeePerGas { get; set; }
     public string? PaymasterData { get; }
@@ -31,9 +33,9 @@ public class GsnTransactionDetails
 
     public GsnTransactionDetails(string from, string data, string to, string maxFeePerGas, string maxPriorityFeePerGas, string? value = null, string? gas = null, string? paymasterData = null, string? clientId = null, bool? useGsn = null)
     {
-        From = from;
+        From = from.ToLowerInvariant();
         Data = data;
-        To = to;
+        To = to.ToLowerInvariant();
         Value = value;
         Gas = gas;
         MaxFeePerGas = maxFeePerGas;
@@ -47,6 +49,22 @@ public class GsnTransactionDetails
     {
         return $"from: {From}, data: {Data}, to: {To}, value: {Value}, gas: {Gas}, maxFeePerGas: {MaxFeePerGas}, maxPriorityFeePerGas: {MaxPriorityFeePerGas}, paymasterData: {PaymasterData}, clientId: {ClientId}, useGSN: {UseGsn}";
     }
+}
+
+[Struct("EIP712Domain")]
+public class DomainWithChainIdString : IDomain
+{
+    [Parameter("string", "name", 1)]
+    public virtual string Name { get; set; } = string.Empty;
+
+    [Parameter("string", "version", 2)]
+    public virtual string Version { get; set; } = string.Empty;
+
+    [Parameter("uint256", "chainId", 3)]
+    public virtual string ChainId { get; set; } = string.Empty;
+
+    [Parameter("address", "verifyingContract", 4)]
+    public virtual string VerifyingContract { get; set; } = string.Empty;
 }
 
 [Struct("EIP712Domain")]

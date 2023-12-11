@@ -46,7 +46,7 @@ public static class GsnClient
         var relayRequest = new RelayRequest(forwardRequest, relayData);
 
         var transactionCalldataGasUsed = GnsTxHelper.EstimateCalldataCostForRequest(relayRequest, config.Gsn, web3Provider);
-        relayRequest.RelayData.TransactionCalldataGasUsed = transactionCalldataGasUsed.ToString();
+        relayRequest.RelayData.TransactionCalldataGasUsed = Convert.ToInt32(transactionCalldataGasUsed, 16).ToString();
 
         return relayRequest;
     }
@@ -106,7 +106,7 @@ public static class GsnClient
     public static void SetGasFeesForTransaction(GsnTransactionDetails transaction, GsnServerConfigPayload serverConfigUpdate)
     {
         var serverSuggestedMinPriorityFeePerGas = BigInteger.Parse(serverConfigUpdate.MinMaxPriorityFeePerGas);
-        var paddedMaxPriority = BigInteger.Multiply(serverSuggestedMinPriorityFeePerGas, 140) / 100;
+        var paddedMaxPriority = serverSuggestedMinPriorityFeePerGas * 140 / 100;
         transaction.MaxPriorityFeePerGas = paddedMaxPriority.ToString();
 
         if (serverConfigUpdate.ChainId == "80001")

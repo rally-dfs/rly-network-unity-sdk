@@ -62,14 +62,14 @@ public class RelayData
     {
         return new MemberValue[]
         {
-            new() { TypeName = "uint256", Value = BigInteger.Parse(MaxFeePerGas) },
-            new() { TypeName = "uint256", Value = BigInteger.Parse(MaxPriorityFeePerGas) },
-            new() { TypeName = "uint256", Value = BigInteger.Parse(TransactionCalldataGasUsed) },
+            new() { TypeName = "uint256", Value = MaxFeePerGas },
+            new() { TypeName = "uint256", Value = MaxPriorityFeePerGas },
+            new() { TypeName = "uint256", Value = TransactionCalldataGasUsed },
             new() { TypeName = "address", Value = RelayWorker },
             new() { TypeName = "address", Value = Paymaster },
             new() { TypeName = "address", Value = Forwarder },
-            new() { TypeName = "bytes", Value = PaymasterData.HexToByteArray() },
-            new() { TypeName = "uint256", Value = BigInteger.Parse(ClientId) }
+            new() { TypeName = "bytes", Value = PaymasterData },
+            new() { TypeName = "uint256", Value = ClientId }
         };
     }
 }
