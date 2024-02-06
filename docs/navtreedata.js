@@ -44,23 +44,15 @@ var NAVTREE =
         [ "Enumerations", "functions_enum.html", null ],
         [ "Properties", "functions_prop.html", null ]
       ] ]
-    ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
-        [ "Enumerations", "globals_enum.html", null ]
-      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"_account_8cs.html",
-"class_nethereum_1_1_signer_1_1_e_i_p712_1_1_custom_eip712_typed_data_signer.html#a68e208c5be72e2b7f80da535355e0a42",
-"class_rly_network_1_1_example_1_1_wallet_management_debug_u_i.html#aa010a1118cf4a162eeca1f0796e84a76"
+"annotated.html",
+"class_rly_network_1_1_example_1_1_chain_config.html#a8a105b87b0e54c7dc1fc26da425b6609",
+"namespace_rly_network_1_1_example.html#a09f97aa45529c202ff5deecd1b7ac445ac84631d45c751510cfbabf034c5f25f0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

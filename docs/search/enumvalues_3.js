@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['local_0',['Local',['../_utils_8cs.html#af0cd7b5df895644abcfad58f15855196a509820290d57f333403f490dde7316f4',1,'Utils.cs']]]
+  ['nowalletconnected_0',['NoWalletConnected',['../namespace_rly_network_1_1_example.html#a09f97aa45529c202ff5deecd1b7ac445a37316960891ca63eb049888df67d5ab9',1,'RlyNetwork::Example']]]
 ];

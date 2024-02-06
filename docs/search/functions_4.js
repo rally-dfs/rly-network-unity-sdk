@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['deletemnemonic_0',['DeleteMnemonic',['../class_android_unity_sdk_plugin.html#a5aba1f807db061429dc75270a3e075cc',1,'AndroidUnitySdkPlugin.DeleteMnemonic()'],['../class_i_o_s_unity_sdk_plugin.html#ae800fdf4e3f6a73512ccd7cee8bd8b96',1,'IOSUnitySdkPlugin.DeleteMnemonic()'],['../interface_i_unity_sdk_platform.html#aa6a01489267302b6934ee77510001ea2',1,'IUnitySdkPlatform.DeleteMnemonic()'],['../class_not_implemented_unity_sdk_plugin.html#a06d16aa677af753c42909e9f59239429',1,'NotImplementedUnitySdkPlugin.DeleteMnemonic()']]]
+  ['forwardrequest_0',['ForwardRequest',['../class_forward_request.html#ac79d9d03d83a54c43b4c86ee093bf7cd',1,'ForwardRequest']]],
+  ['fromjson_1',['FromJson',['../class_gsn_client_1_1_gsn_server_config_payload.html#a6f5851bce87affa0a1e160515dc5a572',1,'GsnClient::GsnServerConfigPayload']]]
 ];

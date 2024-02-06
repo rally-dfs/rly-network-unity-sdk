@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RLY Network Unity SDK: C:/RLYNetwork/Assets/RlyNetwork/Runtime/Scripts/Networks/EvmNetworks.cs Source File</title>
+<title>RLY Network Unity SDK: Assets/RlyNetwork/Runtime/Scripts/Networks/EvmNetworks.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('_evm_networks_8cs_source.html',''); in
   <div class="headertitle"><div class="title">EvmNetworks.cs</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_evm_networks_8cs.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#nullable enable</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#nullable enable</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>System;</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>System.Numerics;</div>
@@ -201,7 +201,7 @@ $(document).ready(function(){initNavTree('_evm_networks_8cs_source.html',''); in
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">return</span> await GsnClient.RelayTransaction(account, _network, tx);</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="class_network_impl.html#a88bf4eddcf5672eb74cac22748bcbc74">  104</a></span>    <span class="keyword">public</span> async Task&lt;string&gt; <a class="code hl_function" href="class_network_impl.html#a88bf4eddcf5672eb74cac22748bcbc74">Transfer</a>(<span class="keywordtype">string</span> destinationAddress, <span class="keywordtype">double</span> amount, <a class="code hl_enumeration" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a> metaTxMethod, <span class="keywordtype">string</span>? tokenAddress = <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="class_network_impl.html#a88bf4eddcf5672eb74cac22748bcbc74">  104</a></span>    <span class="keyword">public</span> async Task&lt;string&gt; <a class="code hl_function" href="class_network_impl.html#a88bf4eddcf5672eb74cac22748bcbc74">Transfer</a>(<span class="keywordtype">string</span> destinationAddress, <span class="keywordtype">double</span> amount, MetaTxMethod metaTxMethod, <span class="keywordtype">string</span>? tokenAddress = <span class="keyword">null</span>)</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    {</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        var account = AccountOrThrow();</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
@@ -226,7 +226,7 @@ $(document).ready(function(){initNavTree('_evm_networks_8cs_source.html',''); in
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">return</span> await <a class="code hl_function" href="class_network_impl.html#af569be9f0495c4fa79b1740700d34974">TransferExact</a>(destinationAddress, decimalAmount, metaTxMethod, tokenAddress);</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="class_network_impl.html#af569be9f0495c4fa79b1740700d34974">  129</a></span>    <span class="keyword">public</span> async Task&lt;string&gt; <a class="code hl_function" href="class_network_impl.html#af569be9f0495c4fa79b1740700d34974">TransferExact</a>(<span class="keywordtype">string</span> destinationAddress, BigInteger amount, <a class="code hl_enumeration" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a> metaTxMethod, <span class="keywordtype">string</span>? tokenAddress = <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="class_network_impl.html#af569be9f0495c4fa79b1740700d34974">  129</a></span>    <span class="keyword">public</span> async Task&lt;string&gt; <a class="code hl_function" href="class_network_impl.html#af569be9f0495c4fa79b1740700d34974">TransferExact</a>(<span class="keywordtype">string</span> destinationAddress, BigInteger amount, MetaTxMethod metaTxMethod, <span class="keywordtype">string</span>? tokenAddress = <span class="keyword">null</span>)</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    {</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        var account = AccountOrThrow();</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
@@ -245,7 +245,7 @@ $(document).ready(function(){initNavTree('_evm_networks_8cs_source.html',''); in
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <a class="code hl_class" href="class_gsn_transaction_details.html">GsnTransactionDetails</a> transferTx;</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">if</span> (metaTxMethod == <a class="code hl_enumeration" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a>.Permit)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">if</span> (metaTxMethod == MetaTxMethod.Permit)</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        {</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            transferTx = await <a class="code hl_class" href="class_permit.html">Permit</a>.<a class="code hl_function" href="class_permit.html#aae97eb3c13dd26f857ee55b082bd8a65">GetPermitTx</a>(account, destinationAddress, amount, _network, tokenAddress, provider);</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        }</div>
@@ -262,7 +262,7 @@ $(document).ready(function(){initNavTree('_evm_networks_8cs_source.html',''); in
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">return</span> await <a class="code hl_function" href="class_network_impl.html#a418ecff62747046c143c3640d459c20a">ClaimRly</a>();</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="class_network_impl.html#a0eaff13329312d0ea39314ee0236d1f0">  165</a></span>    <span class="keyword">public</span> async Task&lt;string&gt; <a class="code hl_function" href="class_network_impl.html#a0eaff13329312d0ea39314ee0236d1f0">SimpleTransfer</a>(<span class="keywordtype">string</span> destinationAddress, <span class="keywordtype">double</span> amount, <span class="keywordtype">string</span>? tokenAddress = <span class="keyword">null</span>, <a class="code hl_enumeration" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a>? metaTxMethod = <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="class_network_impl.html#a0eaff13329312d0ea39314ee0236d1f0">  165</a></span>    <span class="keyword">public</span> async Task&lt;string&gt; <a class="code hl_function" href="class_network_impl.html#a0eaff13329312d0ea39314ee0236d1f0">SimpleTransfer</a>(<span class="keywordtype">string</span> destinationAddress, <span class="keywordtype">double</span> amount, <span class="keywordtype">string</span>? tokenAddress = <span class="keyword">null</span>, MetaTxMethod? metaTxMethod = <span class="keyword">null</span>)</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    {</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        var account = AccountOrThrow();</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
@@ -288,7 +288,6 @@ $(document).ready(function(){initNavTree('_evm_networks_8cs_source.html',''); in
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <span class="keywordflow">return</span> <span class="keyword">new</span> Web3(account, apiUrl);</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>}</div>
-<div class="ttc" id="a_utils_8cs_html_a566265b8525864cabfc03d7f539e9254"><div class="ttname"><a href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a></div><div class="ttdeci">MetaTxMethod</div><div class="ttdef"><b>Definition:</b> <a href="_utils_8cs_source.html#l00013">Utils.cs:14</a></div></div>
 <div class="ttc" id="aclass_gsn_transaction_details_html"><div class="ttname"><a href="class_gsn_transaction_details.html">GsnTransactionDetails</a></div><div class="ttdef"><b>Definition:</b> <a href="_utils_8cs_source.html#l00019">Utils.cs:20</a></div></div>
 <div class="ttc" id="aclass_insufficient_balance_exception_html"><div class="ttname"><a href="class_insufficient_balance_exception.html">InsufficientBalanceException</a></div><div class="ttdef"><b>Definition:</b> <a href="_exception_8cs_source.html#l00013">Exception.cs:14</a></div></div>
 <div class="ttc" id="aclass_meta_transaction_html"><div class="ttname"><a href="class_meta_transaction.html">MetaTransaction</a></div><div class="ttdef"><b>Definition:</b> <a href="_meta_transactions_8cs_source.html#l00018">MetaTransactions.cs:19</a></div></div>
@@ -317,7 +316,7 @@ $(document).ready(function(){initNavTree('_evm_networks_8cs_source.html',''); in
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0bf17f4ba87976bcaababd912696013b.html">RLYNetwork</a></li><li class="navelem"><a class="el" href="dir_8e8b957d0cb59b6eb96a41c42d0260a1.html">Assets</a></li><li class="navelem"><a class="el" href="dir_0bde335f7e85a97a19ead8605eff161f.html">RlyNetwork</a></li><li class="navelem"><a class="el" href="dir_e511c7f998eb89a1c5921e2de56f41ce.html">Runtime</a></li><li class="navelem"><a class="el" href="dir_d02fdeac9866fcc6ad63e996b84deec9.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_40a92d0656bbcf02318e1b66003a5c0a.html">Networks</a></li><li class="navelem"><a class="el" href="_evm_networks_8cs.html">EvmNetworks.cs</a></li>
+    <li class="navelem"><a class="el" href="dir_84bbf7b3c7f28a5a18725745e1505219.html">Assets</a></li><li class="navelem"><a class="el" href="dir_ea47efce3fbb205a515abf7ca4214758.html">RlyNetwork</a></li><li class="navelem"><a class="el" href="dir_8ff22ac8d01e653666f7e6f8fdf7aef2.html">Runtime</a></li><li class="navelem"><a class="el" href="dir_ea0c5ce6f93c9214d1e5e7b71800b39c.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_447ad95afdff574ae8fc33619a233a35.html">Networks</a></li><li class="navelem"><b>EvmNetworks.cs</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

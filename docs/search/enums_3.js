@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['supportedchain_0',['SupportedChain',['../class_rly_network_1_1_example_1_1_wallet_management_debug_u_i.html#ad5f5b151395055b0cf798edf933e220b',1,'RlyNetwork::Example::WalletManagementDebugUI']]]
+  ['walletmanagementstates_0',['WalletManagementStates',['../namespace_rly_network_1_1_example.html#a09f97aa45529c202ff5deecd1b7ac445',1,'RlyNetwork::Example']]]
 ];

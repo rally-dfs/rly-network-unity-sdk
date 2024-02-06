@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RLY Network Unity SDK: C:/RLYNetwork/Assets/RlyNetwork/Runtime/Scripts/Gsn/GsnClient.cs Source File</title>
+<title>RLY Network Unity SDK: Assets/RlyNetwork/Runtime/Scripts/Gsn/GsnClient.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('_gsn_client_8cs_source.html',''); init
   <div class="headertitle"><div class="title">GsnClient.cs</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_gsn_client_8cs.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#nullable enable</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#nullable enable</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>System;</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>System.Collections.Generic;</div>
@@ -118,9 +118,9 @@ $(document).ready(function(){initNavTree('_gsn_client_8cs_source.html',''); init
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">public</span> <span class="keyword">static</span> async Task UpdateConfig(<a class="code hl_class" href="class_network_config.html">NetworkConfig</a> config, <a class="code hl_class" href="class_gsn_transaction_details.html">GsnTransactionDetails</a> transaction)</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keyword">using </span>var httpClient = <span class="keyword">new</span> HttpClient();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        httpClient.DefaultRequestHeaders.Add(<span class="stringliteral">&quot;Authorization&quot;</span>, <a class="code hl_function" href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a><span class="stringliteral">&quot;Bearer {config.RelayerApiKey ?? &quot;</span><span class="stringliteral">&quot;}&quot;</span>);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        httpClient.DefaultRequestHeaders.Add(<span class="stringliteral">&quot;Authorization&quot;</span>, $<span class="stringliteral">&quot;Bearer {config.RelayerApiKey ?? &quot;</span><span class="stringliteral">&quot;}&quot;</span>);</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        var response = await httpClient.GetAsync(<a class="code hl_function" href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a><span class="stringliteral">&quot;{config.Gsn.RelayUrl}/getaddr&quot;</span>);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        var response = await httpClient.GetAsync($<span class="stringliteral">&quot;{config.Gsn.RelayUrl}/getaddr&quot;</span>);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        response.Content.Headers.ContentType = <span class="keyword">new</span> MediaTypeHeaderValue(<span class="stringliteral">&quot;application/json&quot;</span>);</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        httpClient.DefaultRequestHeaders.Accept.Add(<span class="keyword">new</span> MediaTypeWithQualityHeaderValue(<span class="stringliteral">&quot;application/json&quot;</span>));</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
@@ -131,7 +131,7 @@ $(document).ready(function(){initNavTree('_gsn_client_8cs_source.html',''); init
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        SetGasFeesForTransaction(transaction, serverConfigUpdate);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="_gsn_client_8cs.html#ab2b8785fa39be1e87615fa12078daa7a">   34</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> async Task&lt;RelayRequest&gt; BuildRelayRequest(<a class="code hl_class" href="class_gsn_transaction_details.html">GsnTransactionDetails</a> transaction, <a class="code hl_class" href="class_network_config.html">NetworkConfig</a> config, Account wallet, Web3 web3Provider)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">public</span> <span class="keyword">static</span> async Task&lt;RelayRequest&gt; BuildRelayRequest(<a class="code hl_class" href="class_gsn_transaction_details.html">GsnTransactionDetails</a> transaction, <a class="code hl_class" href="class_network_config.html">NetworkConfig</a> config, Account wallet, Web3 web3Provider)</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        transaction.Gas = GnsTxHelper.EstimateGasWithoutCallData(transaction, config.<a class="code hl_property" href="class_network_config.html#a074297616abef0306edad9231db40bee">Gsn</a>.<a class="code hl_property" href="class_g_s_n_config.html#a58ddb1a7d063bb58b85b3df0b7d5258d">GtxDataNonZero</a>, config.<a class="code hl_property" href="class_network_config.html#a074297616abef0306edad9231db40bee">Gsn</a>.<a class="code hl_property" href="class_g_s_n_config.html#a762f273bef880199cb6ca77dffb381bd">GtxDataZero</a>);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
@@ -195,10 +195,10 @@ $(document).ready(function(){initNavTree('_gsn_client_8cs_source.html',''); init
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        ((Dictionary&lt;string, object&gt;)httpRequest[<span class="stringliteral">&quot;metadata&quot;</span>])[<span class="stringliteral">&quot;relayRequestId&quot;</span>] = relayRequestId;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keyword">using </span>var httpClient = <span class="keyword">new</span> HttpClient();</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        httpClient.DefaultRequestHeaders.Add(<span class="stringliteral">&quot;Authorization&quot;</span>, <a class="code hl_function" href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a><span class="stringliteral">&quot;Bearer {config.RelayerApiKey ?? &quot;</span><span class="stringliteral">&quot;}&quot;</span>);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        httpClient.DefaultRequestHeaders.Add(<span class="stringliteral">&quot;Authorization&quot;</span>, $<span class="stringliteral">&quot;Bearer {config.RelayerApiKey ?? &quot;</span><span class="stringliteral">&quot;}&quot;</span>);</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        var jsonContent = JsonConvert.SerializeObject(httpRequest);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        var response = await httpClient.PostAsync(<a class="code hl_function" href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a><span class="stringliteral">&quot;{config.Gsn.RelayUrl}/relay&quot;</span>, <span class="keyword">new</span> StringContent(jsonContent, Encoding.UTF8, <span class="stringliteral">&quot;application/json&quot;</span>));</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        var response = await httpClient.PostAsync($<span class="stringliteral">&quot;{config.Gsn.RelayUrl}/relay&quot;</span>, <span class="keyword">new</span> StringContent(jsonContent, Encoding.UTF8, <span class="stringliteral">&quot;application/json&quot;</span>));</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">return</span> await GnsTxHelper.HandleGsnResponse(response, web3Provider);</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
@@ -240,7 +240,6 @@ $(document).ready(function(){initNavTree('_gsn_client_8cs_source.html',''); init
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        }</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
-<div class="ttc" id="a_u_i_wallet_assets_8cs_html_a475f4d91f48c0fc68cd89949a07a5d58"><div class="ttname"><a href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a></div><div class="ttdeci">$({data.Symbol})</div><div class="ttdef"><b>Definition:</b> <a href="_u_i_wallet_assets_8cs_source.html#l00032">UIWalletAssets.cs:32</a></div></div>
 <div class="ttc" id="aclass_forward_request_html"><div class="ttname"><a href="class_forward_request.html">ForwardRequest</a></div><div class="ttdef"><b>Definition:</b> <a href="_forward_request_8cs_source.html#l00009">ForwardRequest.cs:10</a></div></div>
 <div class="ttc" id="aclass_g_s_n_config_html_a0ee8939b47c630fce7ae09e2981fe9fe"><div class="ttname"><a href="class_g_s_n_config.html#a0ee8939b47c630fce7ae09e2981fe9fe">GSNConfig.ForwarderAddress</a></div><div class="ttdeci">string ForwarderAddress</div><div class="ttdef"><b>Definition:</b> <a href="_network_config_8cs_source.html#l00042">NetworkConfig.cs:42</a></div></div>
 <div class="ttc" id="aclass_g_s_n_config_html_a1190801c7737ba58332909fdc2d6e4a2"><div class="ttname"><a href="class_g_s_n_config.html#a1190801c7737ba58332909fdc2d6e4a2">GSNConfig.RpcUrl</a></div><div class="ttdeci">string RpcUrl</div><div class="ttdef"><b>Definition:</b> <a href="_network_config_8cs_source.html#l00046">NetworkConfig.cs:46</a></div></div>
@@ -289,7 +288,7 @@ $(document).ready(function(){initNavTree('_gsn_client_8cs_source.html',''); init
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0bf17f4ba87976bcaababd912696013b.html">RLYNetwork</a></li><li class="navelem"><a class="el" href="dir_8e8b957d0cb59b6eb96a41c42d0260a1.html">Assets</a></li><li class="navelem"><a class="el" href="dir_0bde335f7e85a97a19ead8605eff161f.html">RlyNetwork</a></li><li class="navelem"><a class="el" href="dir_e511c7f998eb89a1c5921e2de56f41ce.html">Runtime</a></li><li class="navelem"><a class="el" href="dir_d02fdeac9866fcc6ad63e996b84deec9.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_69b9a3b5fbcfad4f932a1b455fc77128.html">Gsn</a></li><li class="navelem"><a class="el" href="_gsn_client_8cs.html">GsnClient.cs</a></li>
+    <li class="navelem"><a class="el" href="dir_84bbf7b3c7f28a5a18725745e1505219.html">Assets</a></li><li class="navelem"><a class="el" href="dir_ea47efce3fbb205a515abf7ca4214758.html">RlyNetwork</a></li><li class="navelem"><a class="el" href="dir_8ff22ac8d01e653666f7e6f8fdf7aef2.html">Runtime</a></li><li class="navelem"><a class="el" href="dir_ea0c5ce6f93c9214d1e5e7b71800b39c.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_6716b27fb7e7e019af33fd1d7f5b6f5f.html">Gsn</a></li><li class="navelem"><b>GsnClient.cs</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

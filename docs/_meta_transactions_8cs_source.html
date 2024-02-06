@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RLY Network Unity SDK: C:/RLYNetwork/Assets/RlyNetwork/Runtime/Scripts/Gsn/Eip712/MetaTransactions.cs Source File</title>
+<title>RLY Network Unity SDK: Assets/RlyNetwork/Runtime/Scripts/Gsn/Eip712/MetaTransactions.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('_meta_transactions_8cs_source.html',''
   <div class="headertitle"><div class="title">MetaTransactions.cs</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_meta_transactions_8cs.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#nullable enable</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#nullable enable</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>System;</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>System.Collections.Generic;</div>
@@ -244,7 +244,7 @@ $(document).ready(function(){initNavTree('_meta_transactions_8cs_source.html',''
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        var maxPriorityFeePerGas = BigInteger.Parse(<span class="stringliteral">&quot;1500000000&quot;</span>);</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        var maxFeePerGas = info.BaseFeePerGas.Value * 2 + maxPriorityFeePerGas;</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="class_gsn_transaction_details.html">GsnTransactionDetails</a>(wallet.Address, tx.GetCallData().ToHex(<span class="keyword">true</span>), contractAddress, maxFeePerGas.ToString(), maxPriorityFeePerGas.ToString(), <span class="stringliteral">&quot;0&quot;</span>, <a class="code hl_function" href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a><span class="stringliteral">&quot;0x{estimatedGas.Value:X2}&quot;</span>);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="class_gsn_transaction_details.html">GsnTransactionDetails</a>(wallet.Address, tx.GetCallData().ToHex(<span class="keyword">true</span>), contractAddress, maxFeePerGas.ToString(), maxPriorityFeePerGas.ToString(), <span class="stringliteral">&quot;0&quot;</span>, $<span class="stringliteral">&quot;0x{estimatedGas.Value:X2}&quot;</span>);</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    [Function(<span class="stringliteral">&quot;executeMetaTransaction&quot;</span>, <span class="stringliteral">&quot;bytes&quot;</span>)]</div>
@@ -266,7 +266,6 @@ $(document).ready(function(){initNavTree('_meta_transactions_8cs_source.html',''
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="class_meta_transaction_1_1_execute_meta_transaction_function.html#a7d1255d9faaa831d14c27e266569350e">  166</a></span>        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keywordtype">byte</span> <a class="code hl_property" href="class_meta_transaction_1_1_execute_meta_transaction_function.html#a7d1255d9faaa831d14c27e266569350e">SigV</a> { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    }</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>}</div>
-<div class="ttc" id="a_u_i_wallet_assets_8cs_html_a475f4d91f48c0fc68cd89949a07a5d58"><div class="ttname"><a href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a></div><div class="ttdeci">$({data.Symbol})</div><div class="ttdef"><b>Definition:</b> <a href="_u_i_wallet_assets_8cs_source.html#l00032">UIWalletAssets.cs:32</a></div></div>
 <div class="ttc" id="aclass_domain_without_chain_id_but_salt_html"><div class="ttname"><a href="class_domain_without_chain_id_but_salt.html">DomainWithoutChainIdButSalt</a></div><div class="ttdef"><b>Definition:</b> <a href="_utils_8cs_source.html#l00071">Utils.cs:72</a></div></div>
 <div class="ttc" id="aclass_g_s_n_config_html_a55f2d838d77217c33bee9a86ec97ce65"><div class="ttname"><a href="class_g_s_n_config.html#a55f2d838d77217c33bee9a86ec97ce65">GSNConfig.ChainId</a></div><div class="ttdeci">string ChainId</div><div class="ttdef"><b>Definition:</b> <a href="_network_config_8cs_source.html#l00047">NetworkConfig.cs:47</a></div></div>
 <div class="ttc" id="aclass_gsn_transaction_details_html"><div class="ttname"><a href="class_gsn_transaction_details.html">GsnTransactionDetails</a></div><div class="ttdef"><b>Definition:</b> <a href="_utils_8cs_source.html#l00019">Utils.cs:20</a></div></div>
@@ -296,7 +295,7 @@ $(document).ready(function(){initNavTree('_meta_transactions_8cs_source.html',''
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0bf17f4ba87976bcaababd912696013b.html">RLYNetwork</a></li><li class="navelem"><a class="el" href="dir_8e8b957d0cb59b6eb96a41c42d0260a1.html">Assets</a></li><li class="navelem"><a class="el" href="dir_0bde335f7e85a97a19ead8605eff161f.html">RlyNetwork</a></li><li class="navelem"><a class="el" href="dir_e511c7f998eb89a1c5921e2de56f41ce.html">Runtime</a></li><li class="navelem"><a class="el" href="dir_d02fdeac9866fcc6ad63e996b84deec9.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_69b9a3b5fbcfad4f932a1b455fc77128.html">Gsn</a></li><li class="navelem"><a class="el" href="dir_baae16041a431517e9cfe649877bcb40.html">Eip712</a></li><li class="navelem"><a class="el" href="_meta_transactions_8cs.html">MetaTransactions.cs</a></li>
+    <li class="navelem"><a class="el" href="dir_84bbf7b3c7f28a5a18725745e1505219.html">Assets</a></li><li class="navelem"><a class="el" href="dir_ea47efce3fbb205a515abf7ca4214758.html">RlyNetwork</a></li><li class="navelem"><a class="el" href="dir_8ff22ac8d01e653666f7e6f8fdf7aef2.html">Runtime</a></li><li class="navelem"><a class="el" href="dir_ea0c5ce6f93c9214d1e5e7b71800b39c.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_6716b27fb7e7e019af33fd1d7f5b6f5f.html">Gsn</a></li><li class="navelem"><a class="el" href="dir_2333451e6f470bb41f96cb8c6b61fe5a.html">Eip712</a></li><li class="navelem"><b>MetaTransactions.cs</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

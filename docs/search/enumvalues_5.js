@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nowalletconnected_0',['NoWalletConnected',['../namespace_rly_network_1_1_example.html#a09f97aa45529c202ff5deecd1b7ac445a37316960891ca63eb049888df67d5ab9',1,'RlyNetwork::Example']]]
+  ['sendtoken_0',['SendToken',['../namespace_rly_network_1_1_example.html#a1edc99c166cc12558fdec475ed6b24aaa292a90f1edfb322c6c72dc9a41f3a974',1,'RlyNetwork::Example']]]
 ];

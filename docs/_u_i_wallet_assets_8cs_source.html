@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RLY Network Unity SDK: C:/RLYNetwork/Assets/RlyNetwork/Example/Scripts/WalletUI/UIWalletAssets.cs Source File</title>
+<title>RLY Network Unity SDK: Assets/RlyNetwork/Example/Scripts/WalletUI/UIWalletAssets.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('_u_i_wallet_assets_8cs_source.html',''
   <div class="headertitle"><div class="title">UIWalletAssets.cs</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_u_i_wallet_assets_8cs.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System.Collections.Generic;</div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System.Collections.Generic;</div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>System.Linq;</div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>UnityEngine;</div>
@@ -124,7 +124,7 @@ $(document).ready(function(){initNavTree('_u_i_wallet_assets_8cs_source.html',''
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_rly_network_1_1_example_1_1_u_i_wallet_assets.html#a7a63630c523bc160facc9e6f7488ea0f">   24</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_rly_network_1_1_example_1_1_u_i_wallet_assets.html#a7a63630c523bc160facc9e6f7488ea0f">UpdateTokenData</a>(<a class="code hl_struct" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html">TokenFetchData</a> data)</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            <span class="keywordflow">if</span> (uIWalletAssetsElements.ContainsKey(data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#a7e6b272e76c033b2b160a856cfae6219">Address</a>))</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                uIWalletAssetsElements[data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#a7e6b272e76c033b2b160a856cfae6219">Address</a>].Initialize(data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#a7e6b272e76c033b2b160a856cfae6219">Address</a>, <a class="code hl_function" href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a><span class="stringliteral">&quot;({data.Symbol}) {data.Name}&quot;</span>, data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#ac4a46ceb942bd42fcf1c5290ce433e91">Balance</a>.ToString());</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                uIWalletAssetsElements[data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#a7e6b272e76c033b2b160a856cfae6219">Address</a>].Initialize(data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#a7e6b272e76c033b2b160a856cfae6219">Address</a>, $<span class="stringliteral">&quot;({data.Symbol}) {data.Name}&quot;</span>, data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#ac4a46ceb942bd42fcf1c5290ce433e91">Balance</a>.ToString());</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <span class="keywordflow">else</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                <a class="code hl_function" href="class_rly_network_1_1_example_1_1_u_i_wallet_assets.html#ae055664426f7b93ffd6f43c4aa03040f">AddTokenData</a>(data);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        }</div>
@@ -138,7 +138,7 @@ $(document).ready(function(){initNavTree('_u_i_wallet_assets_8cs_source.html',''
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            }</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            var element = Instantiate(walletAssetsElementPrefab, scrollViewContent);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            element.Initialize(data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#a7e6b272e76c033b2b160a856cfae6219">Address</a>, <a class="code hl_function" href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a><span class="stringliteral">&quot;({data.Symbol}) {data.Name}&quot;</span>, data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#ac4a46ceb942bd42fcf1c5290ce433e91">Balance</a>.ToString());</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            element.Initialize(data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#a7e6b272e76c033b2b160a856cfae6219">Address</a>, $<span class="stringliteral">&quot;({data.Symbol}) {data.Name}&quot;</span>, data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#ac4a46ceb942bd42fcf1c5290ce433e91">Balance</a>.ToString());</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            uIWalletAssetsElements.Add(data.<a class="code hl_variable" href="struct_rly_network_1_1_example_1_1_token_fetch_data.html#a7e6b272e76c033b2b160a856cfae6219">Address</a>, element);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
@@ -158,7 +158,6 @@ $(document).ready(function(){initNavTree('_u_i_wallet_assets_8cs_source.html',''
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        }</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
-<div class="ttc" id="a_u_i_wallet_assets_8cs_html_a475f4d91f48c0fc68cd89949a07a5d58"><div class="ttname"><a href="_u_i_wallet_assets_8cs.html#a475f4d91f48c0fc68cd89949a07a5d58">$</a></div><div class="ttdeci">$({data.Symbol})</div><div class="ttdef"><b>Definition:</b> <a href="_u_i_wallet_assets_8cs_source.html#l00032">UIWalletAssets.cs:32</a></div></div>
 <div class="ttc" id="aclass_rly_network_1_1_example_1_1_popup_manager_html"><div class="ttname"><a href="class_rly_network_1_1_example_1_1_popup_manager.html">RlyNetwork.Example.PopupManager</a></div><div class="ttdef"><b>Definition:</b> <a href="_popup_manager_8cs_source.html#l00016">PopupManager.cs:17</a></div></div>
 <div class="ttc" id="aclass_rly_network_1_1_example_1_1_popup_manager_html_a8515996d3222c4723ffd220e6b034cb7"><div class="ttname"><a href="class_rly_network_1_1_example_1_1_popup_manager.html#a8515996d3222c4723ffd220e6b034cb7">RlyNetwork.Example.PopupManager.Instance</a></div><div class="ttdeci">static PopupManager Instance</div><div class="ttdef"><b>Definition:</b> <a href="_popup_manager_8cs_source.html#l00025">PopupManager.cs:25</a></div></div>
 <div class="ttc" id="aclass_rly_network_1_1_example_1_1_popup_manager_html_adeb303785aa4408bfa7c7aeba261f1da"><div class="ttname"><a href="class_rly_network_1_1_example_1_1_popup_manager.html#adeb303785aa4408bfa7c7aeba261f1da">RlyNetwork.Example.PopupManager.ShowPopup</a></div><div class="ttdeci">void ShowPopup(PopupType type, string title, string description, Action&lt; string &gt; action)</div><div class="ttdef"><b>Definition:</b> <a href="_popup_manager_8cs_source.html#l00043">PopupManager.cs:43</a></div></div>
@@ -181,7 +180,7 @@ $(document).ready(function(){initNavTree('_u_i_wallet_assets_8cs_source.html',''
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0bf17f4ba87976bcaababd912696013b.html">RLYNetwork</a></li><li class="navelem"><a class="el" href="dir_8e8b957d0cb59b6eb96a41c42d0260a1.html">Assets</a></li><li class="navelem"><a class="el" href="dir_0bde335f7e85a97a19ead8605eff161f.html">RlyNetwork</a></li><li class="navelem"><a class="el" href="dir_be7393fc1acc3c5ade543bb7e256a777.html">Example</a></li><li class="navelem"><a class="el" href="dir_1ce94bb515ec378cc817bd5bcf7f6162.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_fbb39e56f687745561cb513a2cf57540.html">WalletUI</a></li><li class="navelem"><a class="el" href="_u_i_wallet_assets_8cs.html">UIWalletAssets.cs</a></li>
+    <li class="navelem"><a class="el" href="dir_84bbf7b3c7f28a5a18725745e1505219.html">Assets</a></li><li class="navelem"><a class="el" href="dir_ea47efce3fbb205a515abf7ca4214758.html">RlyNetwork</a></li><li class="navelem"><a class="el" href="dir_6ead6e19ab80f247e5ed019a04b6c692.html">Example</a></li><li class="navelem"><a class="el" href="dir_9c443003cd7e2b0a6e21dad995c6405c.html">Scripts</a></li><li class="navelem"><a class="el" href="dir_2bbd90b60c64dee71c8d7507fd9a871b.html">WalletUI</a></li><li class="navelem"><b>UIWalletAssets.cs</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

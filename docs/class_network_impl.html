@@ -139,13 +139,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a891a44d288965f923317b2390c6eec73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78be42f4ce6c427d6e9fb78d4a7bed98"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network_impl.html#a78be42f4ce6c427d6e9fb78d4a7bed98">Relay</a> (<a class="el" href="class_gsn_transaction_details.html">GsnTransactionDetails</a> tx)</td></tr>
 <tr class="separator:a78be42f4ce6c427d6e9fb78d4a7bed98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88bf4eddcf5672eb74cac22748bcbc74"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network_impl.html#a88bf4eddcf5672eb74cac22748bcbc74">Transfer</a> (string destinationAddress, double amount, <a class="el" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a> metaTxMethod, string? tokenAddress=null)</td></tr>
+<tr class="memitem:a88bf4eddcf5672eb74cac22748bcbc74"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network_impl.html#a88bf4eddcf5672eb74cac22748bcbc74">Transfer</a> (string destinationAddress, double amount, MetaTxMethod metaTxMethod, string? tokenAddress=null)</td></tr>
 <tr class="separator:a88bf4eddcf5672eb74cac22748bcbc74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af569be9f0495c4fa79b1740700d34974"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network_impl.html#af569be9f0495c4fa79b1740700d34974">TransferExact</a> (string destinationAddress, BigInteger amount, <a class="el" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a> metaTxMethod, string? tokenAddress=null)</td></tr>
+<tr class="memitem:af569be9f0495c4fa79b1740700d34974"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network_impl.html#af569be9f0495c4fa79b1740700d34974">TransferExact</a> (string destinationAddress, BigInteger amount, MetaTxMethod metaTxMethod, string? tokenAddress=null)</td></tr>
 <tr class="separator:af569be9f0495c4fa79b1740700d34974"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6af2640b4b65c87b3a43a42128d4205"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network_impl.html#ab6af2640b4b65c87b3a43a42128d4205">RegisterAccount</a> ()</td></tr>
 <tr class="separator:ab6af2640b4b65c87b3a43a42128d4205"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0eaff13329312d0ea39314ee0236d1f0"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network_impl.html#a0eaff13329312d0ea39314ee0236d1f0">SimpleTransfer</a> (string destinationAddress, double amount, string? tokenAddress=null, <a class="el" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a>? metaTxMethod=null)</td></tr>
+<tr class="memitem:a0eaff13329312d0ea39314ee0236d1f0"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_network_impl.html#a0eaff13329312d0ea39314ee0236d1f0">SimpleTransfer</a> (string destinationAddress, double amount, string? tokenAddress=null, MetaTxMethod? metaTxMethod=null)</td></tr>
 <tr class="separator:a0eaff13329312d0ea39314ee0236d1f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2f880eba7f42256263a5eee3a6d5cda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_i_network.html">INetwork</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_network.html#aa2f880eba7f42256263a5eee3a6d5cda">WithAccount</a> (Account account)</td></tr>
 <tr class="separator:aa2f880eba7f42256263a5eee3a6d5cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,11 +157,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afad68ee4c537eaf77598bafdd5062144"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e2069987100c42c1bc1c3a3e2345b8a"><td class="memItemLeft" align="right" valign="top">Task&lt; BigInteger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_network.html#a6e2069987100c42c1bc1c3a3e2345b8a">GetExactBalance</a> (string? tokenAddress=null, bool humanReadable=false)</td></tr>
 <tr class="separator:a6e2069987100c42c1bc1c3a3e2345b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93ae13e75fa97776bef09763de30d716"><td class="memItemLeft" align="right" valign="top">Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_network.html#a93ae13e75fa97776bef09763de30d716">Transfer</a> (string destinationAddress, double amount, <a class="el" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a> metaTxMethod, string? tokenAddress=null)</td></tr>
+<tr class="memitem:a93ae13e75fa97776bef09763de30d716"><td class="memItemLeft" align="right" valign="top">Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_network.html#a93ae13e75fa97776bef09763de30d716">Transfer</a> (string destinationAddress, double amount, MetaTxMethod metaTxMethod, string? tokenAddress=null)</td></tr>
 <tr class="separator:a93ae13e75fa97776bef09763de30d716"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9639142b9b88db39b1a737b0245ff55a"><td class="memItemLeft" align="right" valign="top">Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_network.html#a9639142b9b88db39b1a737b0245ff55a">TransferExact</a> (string destinationAddress, BigInteger amount, <a class="el" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a> metaTxMethod, string? tokenAddress=null)</td></tr>
+<tr class="memitem:a9639142b9b88db39b1a737b0245ff55a"><td class="memItemLeft" align="right" valign="top">Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_network.html#a9639142b9b88db39b1a737b0245ff55a">TransferExact</a> (string destinationAddress, BigInteger amount, MetaTxMethod metaTxMethod, string? tokenAddress=null)</td></tr>
 <tr class="separator:a9639142b9b88db39b1a737b0245ff55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6df8a558d8251378f70fae4aec304b1c"><td class="memItemLeft" align="right" valign="top">Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_network.html#a6df8a558d8251378f70fae4aec304b1c">SimpleTransfer</a> (string destinationAddress, double amount, string? tokenAddress=null, <a class="el" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a>? metaTxMethod=null)</td></tr>
+<tr class="memitem:a6df8a558d8251378f70fae4aec304b1c"><td class="memItemLeft" align="right" valign="top">Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_network.html#a6df8a558d8251378f70fae4aec304b1c">SimpleTransfer</a> (string destinationAddress, double amount, string? tokenAddress=null, MetaTxMethod? metaTxMethod=null)</td></tr>
 <tr class="separator:a6df8a558d8251378f70fae4aec304b1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4692a43fb5265923c872ab6b862e7729"><td class="memItemLeft" align="right" valign="top">Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_network.html#a4692a43fb5265923c872ab6b862e7729">ClaimRly</a> ()</td></tr>
 <tr class="separator:a4692a43fb5265923c872ab6b862e7729"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -415,7 +415,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a>?&#160;</td>
+          <td class="paramtype">MetaTxMethod?&#160;</td>
           <td class="paramname"><em>metaTxMethod</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
@@ -453,7 +453,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a>&#160;</td>
+          <td class="paramtype">MetaTxMethod&#160;</td>
           <td class="paramname"><em>metaTxMethod</em>, </td>
         </tr>
         <tr>
@@ -497,7 +497,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_utils_8cs.html#a566265b8525864cabfc03d7f539e9254">MetaTxMethod</a>&#160;</td>
+          <td class="paramtype">MetaTxMethod&#160;</td>
           <td class="paramname"><em>metaTxMethod</em>, </td>
         </tr>
         <tr>
@@ -565,7 +565,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/RLYNetwork/Assets/RlyNetwork/Runtime/Scripts/Networks/<a class="el" href="_evm_networks_8cs_source.html">EvmNetworks.cs</a></li>
+<li>Assets/RlyNetwork/Runtime/Scripts/Networks/<a class="el" href="_evm_networks_8cs_source.html">EvmNetworks.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

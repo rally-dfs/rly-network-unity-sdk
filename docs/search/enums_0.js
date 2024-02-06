@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['metatxmethod_0',['MetaTxMethod',['../_utils_8cs.html#a566265b8525864cabfc03d7f539e9254',1,'Utils.cs']]]
+  ['popuptype_0',['PopupType',['../namespace_rly_network_1_1_example.html#a1edc99c166cc12558fdec475ed6b24aa',1,'RlyNetwork::Example']]]
 ];

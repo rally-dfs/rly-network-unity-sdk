@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['addtokendata_0',['AddTokenData',['../class_rly_network_1_1_example_1_1_u_i_wallet_assets.html#ae055664426f7b93ffd6f43c4aa03040f',1,'RlyNetwork::Example::UIWalletAssets']]],
-  ['addtokendataarray_1',['AddTokenDataArray',['../class_rly_network_1_1_example_1_1_u_i_wallet_assets.html#a6921a5a4c20affc1951577cd77637841',1,'RlyNetwork::Example::UIWalletAssets']]],
-  ['androidunitysdkplugin_2',['AndroidUnitySdkPlugin',['../class_android_unity_sdk_plugin.html#a4c882c98cea7b3d4155dc3a8b2d72af3',1,'AndroidUnitySdkPlugin']]]
+  ['deletemnemonic_0',['DeleteMnemonic',['../class_android_unity_sdk_plugin.html#a5aba1f807db061429dc75270a3e075cc',1,'AndroidUnitySdkPlugin.DeleteMnemonic()'],['../class_i_o_s_unity_sdk_plugin.html#ae800fdf4e3f6a73512ccd7cee8bd8b96',1,'IOSUnitySdkPlugin.DeleteMnemonic()'],['../interface_i_unity_sdk_platform.html#aa6a01489267302b6934ee77510001ea2',1,'IUnitySdkPlatform.DeleteMnemonic()'],['../class_not_implemented_unity_sdk_plugin.html#a06d16aa677af753c42909e9f59239429',1,'NotImplementedUnitySdkPlugin.DeleteMnemonic()']]]
 ];
