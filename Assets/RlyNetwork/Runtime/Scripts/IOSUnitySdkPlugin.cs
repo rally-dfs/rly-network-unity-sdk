@@ -13,7 +13,7 @@ public class IOSUnitySdkPlugin : IUnitySdkPlatform
     static extern string getBundleId();
 
     [DllImport("__Internal")]
-    static extern string getMnemonic();
+    static extern string? getMnemonic();
 
     [DllImport("__Internal")]
     static extern string generateMnemonic();
@@ -29,7 +29,7 @@ public class IOSUnitySdkPlugin : IUnitySdkPlatform
 #else
 #pragma warning disable IDE0060, IDE1006
     static string getBundleId() => string.Empty;
-    static string getMnemonic() => string.Empty;
+    static string? getMnemonic() => null;
     static string generateMnemonic() => string.Empty;
     static bool saveMnemonic(string mnemonic, bool saveToCloud, bool rejectOnCloudSaveFailure) => false;
     static bool deleteMnemonic() => false;
@@ -39,7 +39,7 @@ public class IOSUnitySdkPlugin : IUnitySdkPlatform
 
     public Task<string> GetBundleId() => Task.FromResult(getBundleId());
 
-    public Task<string> GetMnemonic() => Task.FromResult(getMnemonic());
+    public Task<string?> GetMnemonic() => Task.FromResult(getMnemonic());
 
     public Task<string> GenerateNewMnemonic() => Task.FromResult(generateMnemonic());
 

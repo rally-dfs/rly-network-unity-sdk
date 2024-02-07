@@ -52,11 +52,11 @@ public class AndroidUnitySdkPlugin : IUnitySdkPlatform
         return tcs.Task;
     }
 
-    public Task<string> GetMnemonic()
+    public Task<string?> GetMnemonic()
     {
-        var tcs = new TaskCompletionSource<string>();
+        var tcs = new TaskCompletionSource<string?>();
 
-        _pluginInstance.Call("getMnemonic", new ResultCallback<string>(this, mnemonic => tcs.SetResult(mnemonic), err => tcs.SetException(new Exception(err))));
+        _pluginInstance.Call("getMnemonic", new ResultCallback<string?>(this, mnemonic => tcs.SetResult(mnemonic), err => tcs.SetException(new Exception(err))));
 
         return tcs.Task;
     }

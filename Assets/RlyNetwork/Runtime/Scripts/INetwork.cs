@@ -3,12 +3,14 @@
 using System.Numerics;
 using System.Threading.Tasks;
 
+using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
 
 public interface INetwork
 {
     INetwork WithAccount(Account account);
     INetwork WithApiKey(string apiKey);
+    Task<Web3> GetClient();
     Task<object> GetBalance(string? tokenAddress = null, bool humanReadable = false);
     Task<double> GetDisplayBalance(string? tokenAddress = null);
     Task<BigInteger> GetExactBalance(string? tokenAddress = null, bool humanReadable = false);
@@ -18,6 +20,7 @@ public interface INetwork
     Task<string> ClaimRly();
     Task<string> RegisterAccount();
     Task<string> Relay(GsnTransactionDetails tx);
+    void SetApiKey(string apiKey);
 }
 
 public static class NetworkProvider

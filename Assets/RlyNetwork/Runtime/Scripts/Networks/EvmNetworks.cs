@@ -15,11 +15,14 @@ public class NetworkImpl : INetwork
     private readonly NetworkConfig _network;
     private Account? _account;
 
-    Account AccountOrThrow()
+    async Task<Account> AccountOrThrow()
     {
         if (_account == null)
         {
-            throw new InvalidOperationException("Account does not exist");
+            _account = await AccountManager.GetInstance().GetAccount();
+
+            if (_account == null)
+                throw new InvalidOperationException("Account does not exist");
         }
 
         return _account;
@@ -42,9 +45,16 @@ public class NetworkImpl : INetwork
         return this;
     }
 
+    public async Task<Web3> GetClient()
+    {
+        var account = await AccountOrThrow();
+
+        return account.GetEthClient(_network);
+    }
+
     public async Task<string> ClaimRly()
     {
-        var account = AccountOrThrow();
+        var account = await AccountOrThrow();
 
         var existingBalance = (BigInteger)await GetBalance();
         if (existingBalance > 0)
@@ -52,7 +62,7 @@ public class NetworkImpl : INetwork
             throw new PriorDustingException();
         }
 
-        var ethers = GetEthClient(account, _network.Gsn.RpcUrl);
+        var ethers = account.GetEthClient(_network);
 
         var claimTx = await GnsTxHelper.GetClaimTx(account, _network, ethers);
 
@@ -61,11 +71,11 @@ public class NetworkImpl : INetwork
 
     public async Task<object> GetBalance(string? tokenAddress = null, bool humanReadable = false)
     {
-        var account = AccountOrThrow();
+        var account = await AccountOrThrow();
 
         tokenAddress ??= _network.Contracts.RlyERC20;
 
-        var provider = GetEthClient(account, _network.Gsn.RpcUrl);
+        var provider = account.GetEthClient(_network);
 
         var token = new ERC20Service(provider.Eth).GetContractService(tokenAddress);
 
@@ -96,14 +106,19 @@ public class NetworkImpl : INetwork
 
     public async Task<string> Relay(GsnTransactionDetails tx)
     {
-        var account = AccountOrThrow();
+        var account = await AccountOrThrow();
 
         return await GsnClient.RelayTransaction(account, _network, tx);
     }
 
+    public void SetApiKey(string apiKey)
+    {
+        _network.RelayerApiKey = apiKey;
+    }
+
     public async Task<string> Transfer(string destinationAddress, double amount, MetaTxMethod metaTxMethod, string? tokenAddress = null)
     {
-        var account = AccountOrThrow();
+        var account = await AccountOrThrow();
 
         tokenAddress ??= _network.Contracts.RlyERC20;
 
@@ -116,7 +131,7 @@ public class NetworkImpl : INetwork
             throw new InsufficientBalanceException();
         }
 
-        var provider = GetEthClient(account, _network.Gsn.RpcUrl);
+        var provider = account.GetEthClient(_network);
 
         var token = new ERC20Service(provider.Eth).GetContractService(tokenAddress);
 
@@ -128,7 +143,7 @@ public class NetworkImpl : INetwork
 
     public async Task<string> TransferExact(string destinationAddress, BigInteger amount, MetaTxMethod metaTxMethod, string? tokenAddress = null)
     {
-        var account = AccountOrThrow();
+        var account = await AccountOrThrow();
 
         tokenAddress ??= _network.Contracts.RlyERC20;
 
@@ -141,7 +156,7 @@ public class NetworkImpl : INetwork
             throw new InsufficientBalanceException();
         }
 
-        var provider = GetEthClient(account, _network.Gsn.RpcUrl);
+        var provider = account.GetEthClient(_network);
 
         GsnTransactionDetails transferTx;
 
@@ -164,9 +179,9 @@ public class NetworkImpl : INetwork
 
     public async Task<string> SimpleTransfer(string destinationAddress, double amount, string? tokenAddress = null, MetaTxMethod? metaTxMethod = null)
     {
-        var account = AccountOrThrow();
+        var account = await AccountOrThrow();
 
-        var client = GetEthClient(account, _network.Gsn.RpcUrl);
+        var client = account.GetEthClient(_network);
 
         var transaction = new TransactionInput
         {
@@ -181,10 +196,5 @@ public class NetworkImpl : INetwork
     private async Task<BigInteger> DecimalsForToken(ERC20ContractService token)
     {
         return await token.DecimalsQueryAsync();
-    }
-
-    public static Web3 GetEthClient(Account account, string apiUrl)
-    {
-        return new Web3(account, apiUrl);
     }
 }

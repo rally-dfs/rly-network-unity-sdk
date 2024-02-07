@@ -41,7 +41,7 @@ public static class GnsTxHelper
     {
         var originalGas = transaction.Gas;
         var callDataCost = CalculateCalldataCost(transaction.Data, gtxDataNonZero, gtxDataZero);
-        var adjustedGas = BigInteger.Parse(originalGas![2..], System.Globalization.NumberStyles.HexNumber) - callDataCost;
+        var adjustedGas = BigInteger.Parse("0" + originalGas![2..], System.Globalization.NumberStyles.HexNumber) - callDataCost;
 
         return $"0x{adjustedGas:X2}";
     }
@@ -74,7 +74,7 @@ public static class GnsTxHelper
                     From = relayRequest.Request.From,
                     To = relayRequest.Request.To,
                     Value = BigInteger.Parse(relayRequest.Request.Value),
-                    Gas = BigInteger.Parse(relayRequest.Request.Gas.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber),
+                    Gas = BigInteger.Parse("0" + relayRequest.Request.Gas.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber),
                     Nonce = BigInteger.Parse(relayRequest.Request.Nonce),
                     Data = relayRequest.Request.Data.HexToByteArray(),
                     ValidUntilTime = BigInteger.Parse(relayRequest.Request.ValidUntilTime)
@@ -206,7 +206,7 @@ public static class GnsTxHelper
         var maxPriorityFeePerGas = BigInteger.Parse("1500000000");
         var maxFeePerGas = blockInformation.BaseFeePerGas.Value * 2 + maxPriorityFeePerGas;
 
-        return new GsnTransactionDetails(wallet.Address, tx.GetCallData().ToHex(true), config.Contracts.TokenFaucet, maxFeePerGas.ToString("X2"), maxPriorityFeePerGas.ToString("X2"), "0", $"0x{estimatedGas.Value:X2)}");
+        return new GsnTransactionDetails(wallet.Address, tx.GetCallData().ToHex(true), config.Contracts.TokenFaucet, maxFeePerGas.ToString("X2"), maxPriorityFeePerGas.ToString("X2"), "0", $"0x{estimatedGas.Value:X2}");
     }
 
     public static async Task<string> GetClientId()
@@ -228,6 +228,12 @@ public static class GnsTxHelper
     public static async Task<string> HandleGsnResponse(HttpResponseMessage response, Web3 ethClient)
     {
         var responseContent = await response.Content.ReadAsStringAsync();
+
+        if (responseContent == "[\"No token provided\"]")
+        {
+            throw new InvalidOperationException("No API key provided. Please set the API key for the RlyNetwork.");
+        }
+
         var responseMap = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseContent) ?? new Dictionary<string, object>();
 
         if (responseMap.ContainsKey("error"))

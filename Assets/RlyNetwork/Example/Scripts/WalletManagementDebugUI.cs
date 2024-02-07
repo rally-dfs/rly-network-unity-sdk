@@ -275,10 +275,10 @@ namespace RlyNetwork.Example
         async Task TransferToken(string tokenAddress, string recipientAddress, decimal amountInToken, MetaTxMethod? metaTxMethod = null)
         {
             var amount = Web3.Convert.ToWei(amountInToken, (int)await GetTokenDecimals(tokenAddress));
-            await TransferTokenExact(tokenAddress, recipientAddress, amount, metaTxMethod);
+            TransferTokenExact(tokenAddress, recipientAddress, amount, metaTxMethod);
         }
 
-        async Task TransferTokenExact(string tokenAddress, string recipientAddress, BigInteger amount, MetaTxMethod? metaTxMethod = null)
+        void TransferTokenExact(string tokenAddress, string recipientAddress, BigInteger amount, MetaTxMethod? metaTxMethod = null)
         {
             if (metaTxMethod.HasValue)
             {

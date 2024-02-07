@@ -84,7 +84,7 @@ public static class GsnClient
 
     public static async Task<string> RelayTransaction(Account account, NetworkConfig config, GsnTransactionDetails transaction)
     {
-        var web3Provider = NetworkImpl.GetEthClient(account, config.Gsn.RpcUrl);
+        var web3Provider = account.GetEthClient(config);
         await UpdateConfig(config, transaction);
 
         var relayRequest = await BuildRelayRequest(transaction, config, account, web3Provider);
